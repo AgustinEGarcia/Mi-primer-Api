@@ -32,6 +32,7 @@ router.get('/api/notas', (req, res) => {
 
 router.get('/api/notas/:id', (req, res) => {
     const id = req.params;
+    
 });
 
 module.exports = router;
