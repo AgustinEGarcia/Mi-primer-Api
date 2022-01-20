@@ -31,8 +31,21 @@ router.get('/api/notas', (req, res) => {
 });
 
 router.get('/api/notas/:id', (req, res) => {
-    const id = req.params;
+    const id = Number(req.params.id); //siempre los parametros que nos vengan de una request van a ser strings
+    const nota = notas.find(nota => nota.id === id); 
     
+    if(nota){
+      res.json(nota);
+    }else{
+      res.status(404).end();
+    };
+});
+
+router.delete('/api/notas/:id', (req, res) => {
+  const id = Number(req.params.id);
+  notas = notas.filter(nota => nota.id !== id);
+  res.json(notas);
+  res.status(204).end();
 });
 
 module.exports = router;
